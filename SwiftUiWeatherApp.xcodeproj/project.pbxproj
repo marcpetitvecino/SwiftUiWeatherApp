@@ -11,6 +11,9 @@
 		8CA4B95F28A3C33C006CA4CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B95E28A3C33C006CA4CB /* ContentView.swift */; };
 		8CA4B96128A3C33D006CA4CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA4B96028A3C33D006CA4CB /* Assets.xcassets */; };
 		8CA4B96428A3C33D006CA4CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA4B96328A3C33D006CA4CB /* Preview Assets.xcassets */; };
+		8CA4B96B28A3C36E006CA4CB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B96A28A3C36E006CA4CB /* Models.swift */; };
+		8CA4B96D28A3C386006CA4CB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B96C28A3C386006CA4CB /* ViewModel.swift */; };
+		8CA4B97028A6F294006CA4CB /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4B96F28A6F294006CA4CB /* LocationPicker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		8CA4B95E28A3C33C006CA4CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8CA4B96028A3C33D006CA4CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CA4B96328A3C33D006CA4CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8CA4B96A28A3C36E006CA4CB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		8CA4B96C28A3C386006CA4CB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA4B97028A6F294006CA4CB /* LocationPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +61,8 @@
 				8CA4B95E28A3C33C006CA4CB /* ContentView.swift */,
 				8CA4B96028A3C33D006CA4CB /* Assets.xcassets */,
 				8CA4B96228A3C33D006CA4CB /* Preview Content */,
+				8CA4B96A28A3C36E006CA4CB /* Models.swift */,
+				8CA4B96C28A3C386006CA4CB /* ViewModel.swift */,
 			);
 			path = SwiftUiWeatherApp;
 			sourceTree = "<group>";
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = SwiftUiWeatherApp;
+			packageProductDependencies = (
+				8CA4B96F28A6F294006CA4CB /* LocationPicker */,
+			);
 			productName = SwiftUiWeatherApp;
 			productReference = 8CA4B95928A3C33C006CA4CB /* SwiftUiWeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 8CA4B95028A3C33C006CA4CB;
+			packageReferences = (
+				8CA4B96E28A6F294006CA4CB /* XCRemoteSwiftPackageReference "LocationPickerForSwiftUI" */,
+			);
 			productRefGroup = 8CA4B95A28A3C33C006CA4CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA4B96B28A3C36E006CA4CB /* Models.swift in Sources */,
 				8CA4B95F28A3C33C006CA4CB /* ContentView.swift in Sources */,
+				8CA4B96D28A3C386006CA4CB /* ViewModel.swift in Sources */,
 				8CA4B95D28A3C33C006CA4CB /* SwiftUiWeatherAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8CA4B96E28A6F294006CA4CB /* XCRemoteSwiftPackageReference "LocationPickerForSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alessiorubicini/LocationPickerForSwiftUI";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8CA4B96F28A6F294006CA4CB /* LocationPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CA4B96E28A6F294006CA4CB /* XCRemoteSwiftPackageReference "LocationPickerForSwiftUI" */;
+			productName = LocationPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8CA4B95128A3C33C006CA4CB /* Project object */;
 }
