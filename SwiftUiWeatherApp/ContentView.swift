@@ -11,13 +11,17 @@ import LocationPicker
 
 struct ContentView: View {
     @StateObject var viewModel = WeatherViewModel()
+    @StateObject var locationManager = LocationManager()
     
-    @State private var coordinates = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    @State private var coordinates = CLLocationCoordinate2D(latitude: 41.390205, longitude: 2.154007)
     @State private var showSheet = false
+    @State private var firstTime = true
     
     var body: some View {
-        NavigationView {
+        self.getCurrentCoords()
+        return NavigationView {
             VStack {
+                Text("location status: \(locationManager.statusString)")
                 Spacer()
                 Text("\(viewModel.title), \(viewModel.country)")
                     .font(.system(size: 24))
@@ -34,27 +38,32 @@ struct ContentView: View {
                     self.showSheet.toggle()
                 }
                 .padding(.top)
-            }
-            .navigationTitle("Weather")
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $showSheet, onDismiss: {
-                viewModel.fetchWeather(lat: coordinates.latitude, lon: coordinates.longitude)
-            }) {
-                NavigationView {
-                    
-                    // Just put the view into a sheet or navigation link
-                    LocationPicker(instructions: "Tap somewhere to select your coordinates", coordinates: $coordinates)
+                .navigationTitle("Weather")
+                .navigationBarTitleDisplayMode(.inline)
+                .sheet(isPresented: $showSheet, onDismiss: {
+                    viewModel.fetchWeather(lat: coordinates.latitude, lon: coordinates.longitude)
+                }) {
+                    NavigationView {
+                        // Just put the view into a sheet or navigation link
+                        LocationPicker(instructions: "Tap somewhere to select your coordinates", coordinates: $coordinates)
                         
-                    // You can assign it some NavigationView modifiers
-                        .navigationTitle("Location Picker")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationBarItems(leading: Button(action: {
-                            self.showSheet.toggle()
-                        }, label: {
-                            Text("Close").foregroundColor(.red)
-                        }))
+                        // You can assign it some NavigationView modifiers
+                            .navigationTitle("Location Picker")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .navigationBarItems(leading: Button(action: {
+                                self.showSheet.toggle()
+                            }, label: {
+                                Text("Close").foregroundColor(.red)
+                            }))
+                    }
                 }
             }
+        }
+    }
+    
+    private func getCurrentCoords() {
+        if let coords = locationManager.lastLocation?.coordinate {
+            coordinates = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
         }
     }
     

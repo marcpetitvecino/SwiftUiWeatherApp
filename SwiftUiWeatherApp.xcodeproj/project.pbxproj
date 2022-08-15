@@ -14,6 +14,7 @@
 		8CA4B96B28A3C36E006CA4CB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B96A28A3C36E006CA4CB /* Models.swift */; };
 		8CA4B96D28A3C386006CA4CB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B96C28A3C386006CA4CB /* ViewModel.swift */; };
 		8CA4B97028A6F294006CA4CB /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA4B96F28A6F294006CA4CB /* LocationPicker */; };
+		8CBBECDB28A7A3E30035D515 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBECDA28A7A3E30035D515 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8CA4B96328A3C33D006CA4CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8CA4B96A28A3C36E006CA4CB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		8CA4B96C28A3C386006CA4CB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		8CBBECDA28A7A3E30035D515 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				8CA4B96228A3C33D006CA4CB /* Preview Content */,
 				8CA4B96A28A3C36E006CA4CB /* Models.swift */,
 				8CA4B96C28A3C386006CA4CB /* ViewModel.swift */,
+				8CBBECDA28A7A3E30035D515 /* LocationManager.swift */,
 			);
 			path = SwiftUiWeatherApp;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			files = (
 				8CA4B96B28A3C36E006CA4CB /* Models.swift in Sources */,
 				8CA4B95F28A3C33C006CA4CB /* ContentView.swift in Sources */,
+				8CBBECDB28A7A3E30035D515 /* LocationManager.swift in Sources */,
 				8CA4B96D28A3C386006CA4CB /* ViewModel.swift in Sources */,
 				8CA4B95D28A3C33C006CA4CB /* SwiftUiWeatherAppApp.swift in Sources */,
 			);
