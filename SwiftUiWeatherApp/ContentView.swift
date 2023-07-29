@@ -10,30 +10,35 @@ import CoreLocation
 import LocationPicker
 
 struct ContentView: View {
-    @StateObject var viewModel = WeatherViewModel()
-    @StateObject var locationManager = LocationManager()
+    @ObservedObject var viewModel: WeatherViewModel
+    @ObservedObject var locationManager: LocationManager
     
     @State private var coordinates = CLLocationCoordinate2D(latitude: 41.390205, longitude: 2.154007)
     @State private var showSheet = false
     @State private var firstTime = true
-    
+        
     var body: some View {
-        self.getCurrentCoords()
         return NavigationView {
             VStack {
                 Text("location status: \(locationManager.statusString)")
                 Spacer()
-                Text("\(viewModel.title), \(viewModel.country)")
-                    .font(.system(size: 24))
-                AsyncImage(url: URL(string: viewModel.icon))
-                    .frame(width: 130, height: 70)
-                    .padding(.top)
-                Text(viewModel.description)
-                    .font(.system(size: 30))
-                Text(viewModel.temp)
-                    .font(.system(size: 44))
-                    .padding(.top)
+                if (!firstTime) {
+                    Text("\(viewModel.title), \(viewModel.country)")
+                        .font(.system(size: 24))
+                    AsyncImage(url: URL(string: viewModel.icon))
+                        .frame(width: 130, height: 70)
+                        .padding(.top)
+                    Text(viewModel.description)
+                        .font(.system(size: 30))
+                    Text(viewModel.temp)
+                        .font(.system(size: 44))
+                        .padding(.top)
+                }
                 Spacer()
+                Button("Get current location weather") {
+                    viewModel.fetchCurrentLocationWeather()
+                    firstTime = false
+                }
                 Button("Select location") {
                     self.showSheet.toggle()
                 }
@@ -41,6 +46,7 @@ struct ContentView: View {
                 .navigationTitle("Weather")
                 .navigationBarTitleDisplayMode(.inline)
                 .sheet(isPresented: $showSheet, onDismiss: {
+                    firstTime = false
                     viewModel.fetchWeather(lat: coordinates.latitude, lon: coordinates.longitude)
                 }) {
                     NavigationView {
@@ -60,17 +66,10 @@ struct ContentView: View {
             }
         }
     }
-    
-    private func getCurrentCoords() {
-        if let coords = locationManager.lastLocation?.coordinate {
-            coordinates = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
-        }
-    }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: WeatherViewModel(), locationManager: LocationManager())
     }
 }

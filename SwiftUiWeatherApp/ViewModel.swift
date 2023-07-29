@@ -7,16 +7,25 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 class WeatherViewModel: ObservableObject {
-    @Published var title = "N/A"
-    @Published var temp = "N/A"
-    @Published var description = "-"
+    @Published var title = "Loading..."
+    @Published var temp = ""
+    @Published var description = ""
     @Published var icon = ""
     @Published var country = ""
     
-    init() {
-        fetchWeather(lat: 41.390205, lon: 2.154007)
+    private let statusAuthorizedWhenInUse = "authorizedWhenInUse"
+    
+    var locationManager = LocationManager()
+        
+    func fetchCurrentLocationWeather() {
+        var currentCoords: CLLocationCoordinate2D {
+            return CLLocationCoordinate2D(latitude: locationManager.lastLocation?.coordinate.latitude ?? 0.0,
+                                          longitude: locationManager.lastLocation?.coordinate.longitude ?? 0.0)
+        }
+        fetchWeather(lat: currentCoords.latitude, lon: currentCoords.longitude)
     }
     
     func fetchWeather(lat: Double, lon: Double) {
@@ -29,7 +38,7 @@ class WeatherViewModel: ObservableObject {
                 return
             }
             do {
-                if (lon != 0.0 && lat != 0.0) {
+                if (lon != 0.0 && lat != 0.0 && self.locationManager.statusString == self.statusAuthorizedWhenInUse) {
                     let model = try JSONDecoder().decode(WeatherModels.self, from: data)
                     DispatchQueue.main.async {
                         self.title = model.name
@@ -41,6 +50,10 @@ class WeatherViewModel: ObservableObject {
                 }
             } catch {
                 print(error)
+                DispatchQueue.main.async {
+                    self.title = "Error"
+                    self.description = error.localizedDescription
+                }
             }
         }
     
